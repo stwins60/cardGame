@@ -1,0 +1,7 @@
+Flask
+Flask-SocketIO
+eventlet
+Flask-Login
+Flask-SQLAlchemy
+Werkzeug
+eventlet

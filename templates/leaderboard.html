@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <div class="container">
+        <header style="text-align: left;">
+            <img src="{{ url_for('static', filename='favicon.ico') }}" alt="Logo" width="64" height="64">
+        </header>
+        <h2>🏆 Top 10 Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Points</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td>{{ score.username }}</td>
+                    <td>{{ score.points }}</td>
+                    <td>{{ score.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/">🔙 Back to Game</a>
+    </div>
+</body>
+</html>

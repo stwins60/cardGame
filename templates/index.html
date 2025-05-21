@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiplayer Card Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+  <div class="container">
+    <header style="text-align: center;">
+      <img src="{{ url_for('static', filename='favicon.ico') }}" alt="Logo" width="64" height="64">
+    </header>
+    <div id="auth-header">
+        <h2>Login or Register</h2>
+    </div>  
+    <div id="auth">
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="register()">Register</button>
+      <button onclick="login()">Login</button>
+      <p id="auth-msg"></p>
+    </div>
+
+    <div id="game" style="display: none;">
+      <button onclick="toggleInstructions()">Show Instructions</button>
+      <div id="instructions" class="instructions" style="display: none;">
+        <h3>📝 How to Play</h3>
+        <ul>
+          <li>Enter a room name and click <strong>"Join Room"</strong> to enter the game lobby.</li>
+          <li>Once all players have joined, click <strong>"Start Game"</strong> to begin.</li>
+          <li>Each player receives a hand of cards.</li>
+          <li>Play your cards strategically when it's your turn.</li>
+          <li>Score points based on the game rules (e.g., card values or matches).</li>
+          <li>The player with the highest score at the end wins!</li>
+          <li>Use <strong>"Leave Room"</strong> to exit the game at any time.</li>
+        </ul>
+      </div>
+      <h2>Welcome, <span id="user-display"></span></h2>
+      <button id="logout" onclick="logout()">Logout</button>
+      <h3>🏠 Room Name:</h3>
+      <input type="text" id="room" placeholder="Room Name">
+      <button onclick="joinRoom()">Join Room</button>
+      <h4 id="room-host"></h4>
+      <button id="start-game" onclick="startGame()" style="display: none;">Start Game</button>
+      <button id="leave-room" onclick="leaveRoom()" style="display: none;">Leave Room</button>
+      <button id="restart-game" onclick="startGame()" style="display: none;">Start New Game</button>
+
+
+
+      <div id="messages"></div>
+      <div id="hand-section">
+        <h3>Your Hand:</h3>
+        <div id="hand"></div>
+      </div>
+      <div id="turn-timer" style="display: none;">
+        <h4>⏳ Time left to play:</h4>
+        <div id="timer-bar-container">
+          <div id="timer-bar"></div>
+        </div>
+      </div>
+      <div id="score-bar">
+        <h3>Your Score: <span id="score">0</span></h3>
+      </div>
+      <div id="all-scores">
+        <h3>🏅 Player Scores:</h3>
+        <ul id="score-list"></ul>
+      </div>      
+    </div>
+  </div>
+  <div id="winner-modal" class="modal">
+    <div class="modal-content">
+      <h2>🎉 Game Over!</h2>
+      <p id="winner-message"></p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+  <script src="/static/game.js"></script>
+</body>
+</html>

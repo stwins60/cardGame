@@ -1,0 +1,23 @@
+services:
+  card-game:
+    container_name: lab-server-card-game
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart:
+      unless-stopped
+    ports:
+      - 3422:5000
+    environment:
+      - USER=lab-server
+    networks:
+      - cloudflared-lab-net
+    volumes:
+      # - card-data:/app
+      - ${PWD}:/app
+
+networks:
+  cloudflared-lab-net:
+    external: true
+# volumes:
+#   card-data:
