@@ -15,10 +15,21 @@ pipeline {
                 }
             }
         }
-        stage("Scan Docker Image") {
+        stage("Scan Docker Image with Trivy (HTML Report)") {
             steps {
                 script {
-                    sh 'trivy image ${IMAGE_NAME}:${IMAGE_TAG} --format template --template "@./html.tpl" --output trivy-report.html'
+                    sh '''
+                    # Download Trivy HTML template if not present
+                    if [ ! -f html.tpl ]; then
+                    wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl -O html.tpl
+                    fi
+
+                    # Run Trivy image scan using the template
+                    trivy image ${IMAGE_NAME}:${IMAGE_TAG} \
+                    --format template \
+                    --template "@./html.tpl" \
+                    --output trivy-report.html
+                    '''
                 }
             }
         }
@@ -43,13 +54,25 @@ pipeline {
                 }
             }
         }
-        stage("Scan Kubernetes Configuration files") {
+        stage("Scan Kubernetes Configuration Files with Trivy") {
             steps {
                 script {
-                    sh 'trivy config ./k8s --format template --template "@./html.tpl" --output kubernetes-trivy-report.html'
+                    sh '''
+                    # Download Trivy HTML template if not present
+                    if [ ! -f html.tpl ]; then
+                    wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl -O html.tpl
+                    fi
+
+                    # Run Trivy config scan
+                    trivy config ./k8s \
+                    --format template \
+                    --template "@./html.tpl" \
+                    --output kubernetes-trivy-report.html
+                    '''
                 }
             }
         }
+
         stage("Publish Trivy Scanned Kubernetes Report") {
             steps    {
                 publishHTML([
