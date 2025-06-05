@@ -18,7 +18,7 @@ pipeline {
         stage("Scan Docker Image") {
             steps {
                 script {
-                    sh "trivy image ${IMAGE_NAME}:${IMAGE_TAG} --format html --output trivy-report.html"
+                    sh 'trivy image ${IMAGE_NAME}:${IMAGE_TAG} --format template --template "@./html.tpl" --output trivy-report.html'
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
         stage("Scan Kubernetes Configuration files") {
             steps {
                 script {
-                    sh "trivy config ./k8s --format html --output kubernetes-trivy-report.html"
+                    sh 'trivy config ./k8s --format template --template "@./html.tpl" --output kubernetes-trivy-report.html'
                 }
             }
         }
