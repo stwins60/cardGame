@@ -21,7 +21,7 @@ pipeline {
                     sh '''
                     # Download Trivy HTML template if not present
                     if [ ! -f html.tpl ]; then
-                    wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl -O html.tpl
+                    curl -sSL -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
                     fi
 
                     # Run Trivy image scan using the template
@@ -60,7 +60,7 @@ pipeline {
                     sh '''
                     # Download Trivy HTML template if not present
                     if [ ! -f html.tpl ]; then
-                    wget https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl -O html.tpl
+                    curl -sSL -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
                     fi
 
                     # Run Trivy config scan
