@@ -1,0 +1,11 @@
+services:
+  card-game:
+    container_name: lab-server-card-game
+    # image: idrisniyi94/cardgame:stable
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3422:5000
+    environment:
+      - USER=lab-server

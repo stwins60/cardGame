@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: card-game
+  name: card-game
+  namespace: lab-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: card-game
+  template:
+    metadata:
+      labels:
+        app: card-game
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      containers:
+      - image: IMAGE_NAME
+        name: card-game
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        securityContext:
+          runAsNonRoot: true
+          readOnlyRootFilesystem: true

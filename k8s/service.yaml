@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: card-game-service
+  namespace: lab-server
+spec:
+  selector:
+    app: card-game
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 32300
+  type: NodePort
