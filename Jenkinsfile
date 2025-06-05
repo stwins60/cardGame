@@ -5,9 +5,16 @@ pipeline {
     environment {
         IMAGE_NAME = "idrisniyi94/cardgame"
         IMAGE_TAG = "${BUILD_NUMBER}"
+        DOCKERHUB_CREDENTIALS = credentials('ab8f8dd3-42e0-4d7d-87c5-4950c6145d6c')
     }
 
     stages {
+        stage("Docker Login") {
+            steps {
+                sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                echo "Login Successful"
+            }
+        }
         stage("Build Docker Image") {
             steps {
                 script {
@@ -43,6 +50,14 @@ pipeline {
                     reportFiles: 'trivy-report.html',
                     reportName: 'Trivy Scanned Image Vulnerability Report'
                 ])
+            }
+        }
+        stage("Docker Push") {
+            steps {
+                script {
+                    def imageName = "${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker push ${imageName}"
+                }
             }
         }
         stage("Update Deployment with latest image") {
