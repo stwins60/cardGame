@@ -46,8 +46,8 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: '.',
-                    reportFiles: 'trivy-report.html',
+                    reportDir: '.', // var/jenkins_home/cardGame-deployment/
+                    reportFiles: 'trivy-report.html', // var/jenkins_home/cardGame-deployment/trivy-report.html
                     reportName: 'Trivy Scanned Image Vulnerability Report'
                 ])
             }

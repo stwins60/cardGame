@@ -17,8 +17,8 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1001
-        runAsGroup: 1001
+        # runAsUser: 1001
+        # runAsGroup: 1001
       containers:
       - image: IMAGE_NAME
         name: card-game
@@ -34,5 +34,5 @@ spec:
         securityContext:
           runAsNonRoot: true
           readOnlyRootFilesystem: true
-          runAsUser: 1001
-          runAsGroup: 1001
+          # runAsUser: 1001
+          # runAsGroup: 1001

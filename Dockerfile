@@ -10,9 +10,9 @@ RUN pip install -r requirements.txt --no-cache-dir --prefix=/install
 # Stage 2: Runtime with non-root user
 FROM python:3.12-slim
 
-# RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 
-RUN groupadd -g 1001 appgroup && useradd -u 1001 -g appgroup -s /bin/bash -m appuser
+# RUN groupadd -g 1001 appgroup && useradd -u 1001 -g appgroup -s /bin/bash -m appuser
 
 WORKDIR /app
 
@@ -21,9 +21,10 @@ COPY --from=builder /install /usr/local
 
 COPY . .
 
-RUN chown -R 1001:1001 /app
+# RUN chown -R 1001:1001 /app
 
-USER 1001
+# USER 1001
+USER appuser
 
 EXPOSE 5000
 
