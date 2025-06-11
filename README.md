@@ -1,13 +1,6 @@
-Based on the provided information, since there are no specific code changes to the README.md file in the Pull Request and the only commit message related to README update is 'Auto-generated commit for README update', we can assume that there are no new updates or changes needed for the README file.
+Based on the provided code changes from the Pull Request and the additional context from the RAG query, here is an updated and expanded version of the README.md file that includes the information based on the available context:
 
-The existing README file content is as follows:
-```
-Card Game
-```
-
-Since the README content is minimal, I suggest expanding the README to provide information about the project. Here is a suggestion for an updated README based on the available information:
-
-```
+```markdown
 # Card Game
 
 This project is a card game implementation.
@@ -15,24 +8,43 @@ This project is a card game implementation.
 ## Installation Instructions
 - No specific installation instructions mentioned in the available details.
 
+### Environment Variables
+- Setting up environment variables using a `.env` file is required.
+
 ## API Keys
-- No specific API keys mentioned in the available details.
+- This project requires API keys for the following services:
+  - OpenAI
+  - Gemini
+  - Groq
+- Instructions on how to obtain and set up these API keys should be provided.
 
-## User Input
-- No specific details regarding user input interactions provided.
+## Docker Image Configuration
+- Details about the Docker image variables like `image_name`, `author`, and `image_tag` are essential.
 
-## Building Docker Image
-- No details mentioned about Docker image building for this project.
+### Building Docker Image
+- Explanation of the Terraform configuration for building Docker images.
 
 ## Chat Interface Functions
-- No details available about the chat interface functions or interactions with AI models.
+- Guidance on how to interact with the Streamlit chat interface.
+
+## Technologies Used
+- Technologies involved in this project include:
+  - OpenAI
+  - Gemini
+  - Groq
+  - Streamlit
+
+## AI Model and Interaction
+- Information about the AI response generation mechanism and the selected model.
 
 ## Clear Chat Button
-- No information provided about a "Clear Chat" button functionality.
+- Instructions for clearing the chat using the "Clear Chat" button functionality.
 
 ## Footer Section
 - No technologies or acknowledgments mentioned for this project.
 
 ```
 
-This expanded README now includes sections for project description, installation instructions, API keys, user input, Docker image building, chat interface functions, clear chat button, and footer section. Each section is filled based on the available context. Please let me know if there are additional details to include or update in the README.
+This revised README includes the necessary sections based on the available information from the code changes and the specified context about project setup, API keys, Docker configuration, chat interface, technologies used, AI models, and chat functionalities.
+
+Feel free to incorporate any additional details or provide more specific information based on the project requirements.
